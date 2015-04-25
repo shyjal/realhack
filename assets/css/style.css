@@ -22,6 +22,9 @@ i {
 #logo_img{
     margin: 5px;
 }
+.brand-logo{
+    margin-left: 5px;
+}
 #top{
 	position:fixed;
 	z-index: 1000;

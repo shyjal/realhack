@@ -32,11 +32,6 @@ var Map = function() {
                 that.renderCountry();
             });
         });
-        $('.xyz').click(function() {
-            $('#interest_box').fadeOut(function() {
-                that.renderCountry();
-            });
-        });
 
     }
 
