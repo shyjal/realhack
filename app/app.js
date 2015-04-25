@@ -1,6 +1,6 @@
-var Map = function(L) {
+var Map = function() {
     var that = this;
-    this.init=function(){
+    this.init=function(L){
         L.mapbox.accessToken = 'pk.eyJ1Ijoic2h5amFsIiwiYSI6ImpKbDdtdkUifQ.8Re_EhWxVdbDtxQLPKcgEw';
         window.map = L.mapbox.map('map', 'examples.map-i86nkdio').setView([23.0000, 83.0000], 5);
         that.bindEvents();
@@ -44,5 +44,5 @@ var Map = function(L) {
     }
 }
 
-var mapObj=new Map(L);
-mapObj.init();
+var mapObj=new Map();
+mapObj.init(L);
