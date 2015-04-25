@@ -5,8 +5,8 @@
 <title>Realhack</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
-<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.css' rel='stylesheet' />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+<link href='assets/css/mapbox.css' rel='stylesheet' />
+<link rel="stylesheet" href="assets/css/materialize.min.css">
 <link href='assets/css/style.css' rel='stylesheet' />
 
 <style>
@@ -18,23 +18,33 @@
 <div id="top">
 	<nav>
     <div class="nav-wrapper">
-      <img width="60" height="60" src="assets/img/logo.png"/>
+      <img width="50" height="50" id="logo_img" src="assets/img/logo.png"/><a href="#" class="brand-logo"> tandem.land</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Rent</a></li>
-        <li><a href="components.html">New property</a></li>
-        <li><a href="javascript.html">Land</a></li>
+        <li><a href="#">Rent</a></li>
+        <li><a href="#">New property</a></li>
+        <li><a href="#">Land</a></li>
       </ul>
     </div>
   </nav>
 </div>
 <div id='map'></div>
+<div id='interest_box'>
+<div class="row">
+      <div class="col s6 use"><h1>USE</h1></div>
+      <div class="col s6 invest shwmap"><h1>INVEST</h1></div>
+</div>
+          
+</div>
+
+          
+</div>
 <div id='data_box'></div>
 
 
-
-<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.js'></script>
+<script src='assets/data/karnataka.geojson'></script>
+<script src='assets/js/mapbox.js'></script>
 <script src="assets/js/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+<script src="assets/js/materialize.min.js"></script>
 <script src="app/app.js"></script>
 </body>
 </html>
