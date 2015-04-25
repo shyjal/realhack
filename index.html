@@ -4,10 +4,10 @@
 <meta charset=utf-8 />
 <title>Realhack</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.js'></script>
+
 <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.css' rel='stylesheet' />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+<link href='assets/css/style.css' rel='stylesheet' />
 
 <style>
   body { margin:0; padding:0; }
@@ -15,11 +15,26 @@
 </style>
 </head>
 <body>
+<div id="top">
+	<nav>
+    <div class="nav-wrapper">
+      <img width="60" height="60" src="assets/img/logo.png"/>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Rent</a></li>
+        <li><a href="components.html">New property</a></li>
+        <li><a href="javascript.html">Land</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
 <div id='map'></div>
-<script>
-L.mapbox.accessToken = 'pk.eyJ1Ijoic2h5amFsIiwiYSI6ImpKbDdtdkUifQ.8Re_EhWxVdbDtxQLPKcgEw';
-var map = L.mapbox.map('map', 'examples.map-i86nkdio')
-    .setView([40, -74.50], 9);
-</script>
+<div id='data_box'></div>
+
+
+
+<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.js'></script>
+<script src="assets/js/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+<script src="app/app.js"></script>
 </body>
 </html>
