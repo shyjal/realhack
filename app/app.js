@@ -108,6 +108,7 @@ var Map = function() {
                 layer.on("click", function(e) {
                      map.fitBounds(layer.getBounds());
                      that.showData();
+                     that.showAmenities();
 
                 });
 
@@ -123,6 +124,20 @@ var Map = function() {
             Materialize.showStaggeredList('#data-list');
         });
         
+    }
+
+    this.showAmenities=function() {
+        $('#amenities').fadeIn(function(){
+            Materialize.showStaggeredList('#amenities ul');
+        });
+
+        $( "#amenities li" ).hover(
+          function() {
+            $(this).find('p').fadeIn(200);
+          }, function() {
+            $(this).find('p').hide();
+          }
+        );
     }
 }
 
