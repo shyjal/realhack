@@ -175,9 +175,9 @@ var App = function() {
 
         $( "#amenities li" ).hover(
           function() {
-            $(this).find('p').fadeIn(200);
+            $(this).find('.info').fadeIn(200);
           }, function() {
-            $(this).find('p').hide();
+            $(this).find('.info').hide();
           }
         );
     }
