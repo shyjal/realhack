@@ -1,5 +1,0 @@
-var amenities = function() {
-
-}
-
-

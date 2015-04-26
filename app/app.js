@@ -1,5 +1,6 @@
-var Map = function() {
+var App = function() {
     var that = this;
+    var country, state, district, layerSelected, lgroup;
     var defaultStyle = {
         "fillColor": "#1fc055",
         "weight": 1,
@@ -18,26 +19,70 @@ var Map = function() {
         L.mapbox.accessToken = 'pk.eyJ1Ijoic2h5amFsIiwiYSI6ImpKbDdtdkUifQ.8Re_EhWxVdbDtxQLPKcgEw';
         window.map = L.mapbox.map('map', 'examples.map-i86nkdio').setView([23.0000, 83.0000], 5);
         that.bindEvents();
+        lgroup = L.layerGroup().addTo(map);
+    }
+
+    this.bindStates = function(window) {
+        $(window).hashchange(function() {
+
+            var hash = location.hash.substring(2).split('/');
+            hash = hash[0];
+            console.log(hash)
+            if (hash) {
+                $('#interest_box').fadeOut();
+                $('#use_box').fadeOut();
+                $('#data_box').fadeOut();
+                if (hash == "home") {
+                    lgroup.clearLayers();
+                    $('#interest_box').fadeIn();
+                    map.setView([23.0000, 83.0000], 5);
+
+                } else if (hash == "purpose-use") {
+                    lgroup.clearLayers();
+                    $('#use_box').fadeIn();
+                    map.setView([23.0000, 83.0000], 5);
+                } else if (hash == "map-india") {
+                    lgroup.clearLayers();
+                    that.renderCountry();
+                } else if (hash == "map-karnataka") {
+                    lgroup.clearLayers();
+                    that.renderState();
+
+                } else if (hash == "map-banglore") {
+                    lgroup.clearLayers();
+                    that.renderDistrict();
+
+                } else if (hash == "map-layer") {
+                    map.fitBounds(layerSelected.getBounds());
+                    that.showData();
+                    that.showAmenities();
+
+                } else {
+
+                }
+            } else {
+                parent.location.hash = '/home';
+            }
+
+        });
+
+        $(window).hashchange();
+
     }
 
     this.bindEvents = function() {
         $('.use').click(function() {
-            $('#interest_box').fadeOut(function() {
-                $('#interest_box .row').html('<div class="col s4 shwmap xyz"><h1>HOUSE</h1></div><div class="col s4 shwmap"><h1>AGRI</h1></div><div class="col s4 shwmap"><h1>INDUSTRY</h1></div>');
-                $('#interest_box').fadeIn();
-            });
+            parent.location.hash = '/purpose-use';
         });
         $('.shwmap').click(function() {
-            $('#interest_box').fadeOut(function() {
-                that.renderCountry();
-            });
+            parent.location.hash = '/map-india';
         });
 
     }
 
 
     this.renderCountry = function() {
-        var country=L.geoJson(states, {
+        country = L.geoJson(states, {
 
             style: function(feature) {
                 return defaultStyle;
@@ -50,8 +95,7 @@ var Map = function() {
 
                 });
                 layer.on("click", function(e) {
-                    map.removeLayer(country);
-                    that.renderState();
+                    parent.location.hash = '/map-karnataka';
 
                 });
 
@@ -61,11 +105,12 @@ var Map = function() {
                 });
             }
 
-        }).addTo(map);
+        }).addTo(lgroup);
+        map.setView([23.0000, 83.0000], 5);
     }
     this.renderState = function() {
 
-        var state=L.geoJson(karnataka, {
+        state = L.geoJson(karnataka, {
 
             style: function(feature) {
                 return defaultStyle;
@@ -78,8 +123,7 @@ var Map = function() {
 
                 });
                 layer.on("click", function(e) {
-                     map.removeLayer(state);
-                    that.renderDistrict();
+                    parent.location.hash = '/map-banglore';
 
                 });
 
@@ -88,12 +132,12 @@ var Map = function() {
                     layer.setStyle(defaultStyle);
                 });
             }
-        }).addTo(map);
+        }).addTo(lgroup);
         map.fitBounds(state.getBounds());
     }
     this.renderDistrict = function() {
 
-        var district=L.geoJson(bangalore, {
+        district = L.geoJson(bangalore, {
 
             style: function(feature) {
                 return defaultStyle;
@@ -106,24 +150,22 @@ var Map = function() {
 
                 });
                 layer.on("click", function(e) {
-                     map.fitBounds(layer.getBounds());
-                     that.showData();
-                     that.showAmenities();
-
+                    layerSelected = layer;
+                    parent.location.hash = '/map-layer';
                 });
 
                 layer.on("mouseout", function(e) {
                     layer.setStyle(defaultStyle);
                 });
             }
-        }).addTo(map);
+        }).addTo(lgroup);
         map.fitBounds(district.getBounds());
     }
-    this.showData=function(){
-        $('#data_box').fadeIn(function(){
+    this.showData = function() {
+        $('#data_box').fadeIn(function() {
             Materialize.showStaggeredList('#data-list');
         });
-        
+
     }
 
     this.showAmenities=function() {
@@ -141,5 +183,6 @@ var Map = function() {
     }
 }
 
-var mapObj = new Map();
-mapObj.init(L);
+var mapApp = new App();
+mapApp.init(L);
+mapApp.bindStates(window);
