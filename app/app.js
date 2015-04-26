@@ -5,7 +5,7 @@ var App = function() {
         "fillColor": "#1fc055",
         "weight": 1,
         "fillOpacity": 0.3,
-        "color": '#000',
+        "color": '#7323dc',
         "dashArray": "5"
     };
     var highlightStyle = {
@@ -15,11 +15,40 @@ var App = function() {
         "dashArray": "5"
     };
 
-    this.init = function(L) {
+    this.init = function(L,document) {
         L.mapbox.accessToken = 'pk.eyJ1Ijoic2h5amFsIiwiYSI6ImpKbDdtdkUifQ.8Re_EhWxVdbDtxQLPKcgEw';
         window.map = L.mapbox.map('map', 'examples.map-i86nkdio').setView([23.0000, 83.0000], 5);
         that.bindEvents();
         lgroup = L.layerGroup().addTo(map);
+
+        var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+
+        var barChartData = {
+        labels : ["January","February","March","April","May","June","July"],
+        datasets : [
+            {
+                fillColor : "rgba(220,220,220,0.5)",
+                strokeColor : "rgba(220,220,220,0.8)",
+                highlightFill: "rgba(220,220,220,0.75)",
+                highlightStroke: "rgba(220,220,220,1)",
+                data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+            },
+            {
+                fillColor : "rgba(151,187,205,0.5)",
+                strokeColor : "rgba(151,187,205,0.8)",
+                highlightFill : "rgba(151,187,205,0.75)",
+                highlightStroke : "rgba(151,187,205,1)",
+                data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+            }
+        ]
+
+    }
+    window.onload = function(){
+    var ctx = document.getElementById("mapcanvas").getContext("2d");
+        window.myBar = new Chart(ctx).Bar(barChartData, {
+            responsive : true
+        });
+    }
     }
 
     this.bindStates = function(window) {
@@ -31,7 +60,7 @@ var App = function() {
             if (hash) {
                 $('#interest_box').fadeOut();
                 $('#use_box').fadeOut();
-                $('#data_box').fadeOut();
+                $('.data_class').fadeOut();
                 if (hash == "home") {
                     lgroup.clearLayers();
                     $('#interest_box').fadeIn();
@@ -162,16 +191,13 @@ var App = function() {
         map.fitBounds(district.getBounds());
     }
     this.showData = function() {
-        $('#data_box').fadeIn(function() {
+        $('.data_class').fadeIn(function() {
             Materialize.showStaggeredList('#data-list');
         });
 
     }
 
     this.showAmenities=function() {
-        $('#amenities').fadeIn(function(){
-            Materialize.showStaggeredList('#amenities ul');
-        });
 
         $( "#amenities li" ).hover(
           function() {
@@ -184,5 +210,7 @@ var App = function() {
 }
 
 var mapApp = new App();
-mapApp.init(L);
-mapApp.bindStates(window);
+window.onload = function(){
+    mapApp.init(L,document);
+    mapApp.bindStates(window);
+}

@@ -43,28 +43,32 @@
 
 </div>
 
-<div id='data_box'>
+<div id='data_box' class="data_class">
       <ul id="data-list">
           <li>
-            <h5><a href="#">Situated ...</a></h5>
-            <p>near, Forum Mall. Has an area of 34500 sq.m</p>
+            <h5><a href="#">Situated</a></h5>
+            <p>Near, Kalasipalya. Has an area of 34500 sq.m</p>
           </li>
           <li>
-            <h5><a href="#">Contact ...</a></h5>
-            <p>Mr. Senthil Kumar - 09747 225 336</p>
+            <h5><a href="#">Contact</a></h5>
+            <a class="waves-effect waves-light btn-large"><i class="mdi-action-settings-power right"></i>Call Owner</a>
+
           </li>
           <li>
-            <h5><a href="#">Suitable for ...</a></h5>
+            <h5><a href="#">Suitable for</a></h5>
             <p>Agriculture, Industries, Hospitals</p>
           </li>
           <li>
-            <h5><a href="#">Price is ...</a></h5>
+            <h5><a href="#">Price is</a></h5>
             <p>450000</p>
+          </li>
+          <li>
+            <div id="mapcanvas"></div>
           </li>
       </ul>
 </div>
 
-<div id= 'amenities'>
+<div id= 'amenities' class="data_class">
   <ul>
       <li>
         <div class="imgAmen"> <img src="http://fc07.deviantart.net/fs71/f/2010/101/9/c/Defcon_256_png_icon_by_KingReverant.png"></div>
@@ -84,6 +88,8 @@
 <script src='assets/data/bangalore.geojson'></script>
 <script src='assets/data/karnataka.geojson'></script>
 <script src='assets/data/states.geojson'></script>
+<script src="assets/js/Chart.Core.js"></script>
+<script src="assets/js/Chart.Bar.js"></script>
 <script src="assets/js/jquery.js"></script>
 <script src="assets/js/history.js"></script>
 <script src='assets/js/mapbox.js'></script>
