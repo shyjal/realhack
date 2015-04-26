@@ -17,6 +17,9 @@ i {
 .btn-large{
     background-color: #7323dc;
 }
+.btn-large:hover{
+    background-color: #8644dd;
+}
 .row{
     margin-bottom: 0px; 
 }
@@ -128,29 +131,15 @@ i {
 }
 .tooltipped{
     background: #fff;
-}
-/*#amenities ul{
-    width: auto;
-}
-.imgAmen{
-    background-color: #fff;
-    width: 100px;
+     -webkit-filter: grayscale(100%); filter: grayscale(100%);
 }
 
-#amenities li img{
-    width : 45px;
-    height: 45px;
-    padding: 5px 0px;  
-}
-
-#amenities li img:hover{
-    border-bottom: 1px solid grey;
-}
-*/
-
-img{
+#amenities img{
     width: 30px;
     height: 30px;
 }
 
 
+#mapcanvas{
+    height: 200px;
+}
